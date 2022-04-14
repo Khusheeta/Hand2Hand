@@ -1,12 +1,30 @@
-import { View, Text, Image, StyleSheet, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Alert} from 'react-native'
 import React, { useState } from 'react'
 import { TextInput, Button } from 'react-native-paper'
-
+import auth from '@react-native-firebase/auth';
 
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPass, checkPass] = useState('')
+
+    const userSignup = async ()=>{
+    //  if(!email||!password) {
+    //       Alert.alert("Please fill all the fields.")
+    //     return
+    //  }
+    //  try{
+    //       await auth().createUserWithEmailAndPassword(email, password)
+    //  }catch(err){
+    //       Alert.alert("Something went wrong please try different password.")
+    //  }
+     
+        const result = await auth().createUserWithEmailAndPassword(email, password)
+        console.log(result.user)
+
+    }
+
+
     return (
         <KeyboardAvoidingView behavior="position">
             <View style={styles.box1}>
@@ -36,7 +54,7 @@ const LoginScreen = ({ navigation }) => {
                         secureTextEntry={true}
                         onChangeText={text => checkPass(text)}
                     />
-                    <Button mode="contained" onPress={() => navigation.navigate('home')}>
+                    <Button mode="contained" onPress={() => userSignup()}>
                         SignUp
                     </Button>
                     <TouchableOpacity

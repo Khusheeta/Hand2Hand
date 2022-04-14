@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "604867747085",
+    "project_id": "hand2hand-a315a",
+    "storage_bucket": "hand2hand-a315a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604867747085:android:22b9ed0e6aa13fac8ba444",
+        "android_client_info": {
+          "package_name": "com.hand2hand"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604867747085-e8rqpe7stmm21ntnquli24hcjgc87b1o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi6Xr4IfIg0MyLwyaquzHZWakGTCIshZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604867747085-e8rqpe7stmm21ntnquli24hcjgc87b1o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

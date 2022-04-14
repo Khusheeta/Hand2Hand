@@ -1,6 +1,6 @@
 
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -24,7 +24,9 @@ import FlashScreen from './screens/FlashScreen'
 import LoginSignup from './screens/LoginSignup';
 import PersonalInfo from './screens/PersonalInfo'
 import MyProfile from './screens/MyProfile';
+import AccountScreen from './screens/AccountScreen';
 
+import auth from  '@react-native-firebase/auth'
 
 const theme = {
   ...DefaultTheme,
@@ -54,6 +56,7 @@ const TabNavigator = () => {
     <Tab.Navigator>
       <Tab.Screen name="home" component={HomeScreen} />
       <Tab.Screen name="create" component={CreateAdScreen} />
+      <Tab.Screen name="account" component={AccountScreen}  options={{title:"logout"}} />
       <Tab.Screen name="persInfo" component={PersonalInfo} options={{ headerShown: false }} />
       <Stack.Screen name="profile" component={MyProfile} options={{ title: 'Your Profile' }} />
     </Tab.Navigator>
@@ -61,10 +64,21 @@ const TabNavigator = () => {
 }
 
 const Navigation = () => {
+  const [user, setUser] = useState('')
+  useEffect(()=>{
+      auth().onAuthStateChanged((UserExist)=>{
+      if(UserExist){
+           setUser(UserExist)
+      }else{
+           setUser("")
+      }
+    })
+
+  },[])
   return (
     <NavigationContainer>
-      <TabNavigator />
-      {/* <AuthNavigator /> */}
+        {user?<TabNavigator />: <AuthNavigator />}
+     
     </NavigationContainer>
   )
 }

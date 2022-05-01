@@ -26,11 +26,9 @@ const LoginSignup = ({ navigation }) => {
                                 mode="contained" onPress={() => navigation.navigate('signup')}>
                                 Sign Up
                             </Button>
-                            <TouchableOpacity
-                                onPress={() => navigation.navigate('home')}>
-                                <Text>SKIP</Text>
-                            </TouchableOpacity>
-                        </View>
+                           
+                            <TouchableOpacity onPress={() => navigation.navigate('home')}><Text>SKIP</Text></TouchableOpacity>
+                       </View>
                     </View>
                 </KeyboardAvoidingView>
             </ImageBackground>

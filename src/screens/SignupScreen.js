@@ -9,18 +9,18 @@ const LoginScreen = ({ navigation }) => {
     const [confirmPass, checkPass] = useState('')
 
     const userSignup = async ()=>{
-    //  if(!email||!password) {
-    //       Alert.alert("Please fill all the fields.")
-    //     return
-    //  }
-    //  try{
-    //       await auth().createUserWithEmailAndPassword(email, password)
-    //  }catch(err){
-    //       Alert.alert("Something went wrong please try different password.")
-    //  }
+     if(!email||!password) {
+          Alert.alert("Please fill all the fields.")
+        return
+     }
+     try{
+          await auth().createUserWithEmailAndPassword(email, password)
+     }catch(err){
+          Alert.alert("Something went wrong please try different password.")
+     }
      
-        const result = await auth().createUserWithEmailAndPassword(email, password)
-        console.log(result.user)
+        // const result = await auth().createUserWithEmailAndPassword(email, password)
+        // console.log(result.user)
 
     }
 

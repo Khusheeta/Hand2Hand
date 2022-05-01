@@ -1,7 +1,8 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet,  Alert } from 'react-native'
 import React, { useState } from 'react'
-import { TextInput, Button } from 'react-native-paper'
-
+import { TextInput, Button} from 'react-native-paper'
+import firestore from '@react-native-firebase/firestore'
+import auth from '@react-native-firebase/auth'
 
 const CreateAdScreen = () => {
     const [name, setName] = useState('')
@@ -9,6 +10,25 @@ const CreateAdScreen = () => {
     const [year, setYear] = useState('')
     const [price, setPrice] = useState('')
     const [phone, setPhone] = useState('')
+
+    const postData = async () =>{
+        try{
+                 await firestore().collection('ads')
+            .add({
+                 name,
+                 desc,
+                 year,
+                 price,
+                 phone,
+                 image: "https://unsplash.com/photos/CXYPfveiuis",
+                 uid:auth().currentUser.uid
+           })
+             Alert.alert("posted you Ad!")
+        }catch(err){
+             Alert.alert("Something went wrong. Try again later.")
+        }
+      
+    }
 
     return (
         <View style={styles.container}>
@@ -51,7 +71,7 @@ const CreateAdScreen = () => {
             <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
                 Upload Image
             </Button>
-            <Button mode="contained" onPress={() => console.log('Pressed')}>
+            <Button mode="contained" onPress={() => postData() }>
                 Post
             </Button>
         </View>

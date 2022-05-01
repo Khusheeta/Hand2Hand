@@ -56,9 +56,9 @@ const TabNavigator = () => {
     <Tab.Navigator>
       <Tab.Screen name="home" component={HomeScreen} />
       <Tab.Screen name="create" component={CreateAdScreen} />
-      <Tab.Screen name="account" component={AccountScreen}  options={{title:"logout"}} />
+      <Tab.Screen name="account" component={AccountScreen}  />
       <Tab.Screen name="persInfo" component={PersonalInfo} options={{ headerShown: false }} />
-      <Stack.Screen name="profile" component={MyProfile} options={{ title: 'Your Profile' }} />
+      {/* <Stack.Screen name="profile" component={MyProfile} options={{ title: 'Your Profile' }} /> */}
     </Tab.Navigator>
   )
 }
@@ -66,14 +66,14 @@ const TabNavigator = () => {
 const Navigation = () => {
   const [user, setUser] = useState('')
   useEffect(()=>{
-      auth().onAuthStateChanged((UserExist)=>{
+    const unsubscribe = auth().onAuthStateChanged((UserExist)=>{
       if(UserExist){
            setUser(UserExist)
       }else{
            setUser("")
       }
     })
-
+    return unsubscribe
   },[])
   return (
     <NavigationContainer>
@@ -94,6 +94,7 @@ const App = () => {
           {/* <MyProfile /> */}
           {/* <FlashScreen /> */}
           {/* <PersonalInfo /> */}
+          {/* < AccountScreen /> */}
         </View>
       </PaperProvider>
     </>
